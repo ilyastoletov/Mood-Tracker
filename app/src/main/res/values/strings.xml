@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Mood Tracker</string>
+    <string name="login">Логин</string>
+    <string name="enter_login">Введите логин</string>
+    <string name="password">Пароль</string>
+    <string name="enter_password">Введите пароль</string>
+    <string name="register">Регистрация</string>
+    <string name="sign_in">Вход</string>
+    <string name="sign_up">Регистрация</string>
+    <string name="passwords_not_match">Пароли не совпадают</string>
+    <string name="min_password_length">Минимальная длина пароля 8 символов</string>
+    <string name="uncorrect_login">Длина логина должна быть от 3 до 32 символов</string>
+    <string name="confirm_password">Подтвердите пароль</string>
+    <string name="confirm_pass_placeholder">Введите пароль еще раз</string>
+</resources>
