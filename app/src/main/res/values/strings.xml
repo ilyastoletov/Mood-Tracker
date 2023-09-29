@@ -12,4 +12,7 @@
     <string name="uncorrect_login">Длина логина должна быть от 3 до 32 символов</string>
     <string name="confirm_password">Подтвердите пароль</string>
     <string name="confirm_pass_placeholder">Введите пароль еще раз</string>
+    <string name="register_button">Зарегистрироваться</string>
+    <string name="successfull_registration">Регистрация прошла успешно</string>
+    <string name="incorrect_fields">Поля заполнены неверно</string>
 </resources>

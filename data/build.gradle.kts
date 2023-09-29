@@ -1,6 +1,8 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -9,7 +11,6 @@ android {
 
     defaultConfig {
         minSdk = 24
-        targetSdk = 33
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -24,15 +25,28 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
 }
 
 dependencies {
 
+    implementation(project(":domain"))
+
     implementation(Dependencies.Core.ktx)
+    
+    implementation(Dependencies.Retrofit.core)
+    implementation(Dependencies.Retrofit.converter)
+    
+    implementation(Dependencies.Room.core)
+    implementation(Dependencies.Room.compiler)
+    implementation(Dependencies.Room.ktx)
+    kapt(Dependencies.Room.kapt)
+    
+    implementation(Dependencies.Hilt.core)
+    kapt(Dependencies.Hilt.kapt)
 }

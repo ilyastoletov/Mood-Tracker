@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.dagger.hilt.android")
+    id("kotlin-kapt")
 }
 
 android {
@@ -33,6 +35,13 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+
+    configurations {
+        all {
+            exclude("com.intellij", "annotations")
+        }
+    }
+
     buildFeatures {
         compose = true
     }
@@ -48,6 +57,9 @@ android {
 
 dependencies {
 
+    implementation(project(":domain"))
+    implementation(project(":data"))
+
     implementation(Dependencies.Core.ktx)
     implementation(Dependencies.Core.kotlinBom)
     implementation(Dependencies.Core.activityCompose)
@@ -58,8 +70,14 @@ dependencies {
     implementation(Dependencies.Compose.uiGraphics)
     implementation(Dependencies.Compose.toolingPreview)
     implementation(Dependencies.Compose.material3)
+    implementation(Dependencies.Compose.runtimeCompose)
     implementation(Dependencies.Compose.navigation)
+    
     debugImplementation(Dependencies.Compose.tooling)
     debugImplementation(Dependencies.Compose.testManifest)
+
+    kapt(Dependencies.Hilt.kapt)
+    implementation(Dependencies.Hilt.core)
+    implementation(Dependencies.Hilt.navCompose)
 
 }
