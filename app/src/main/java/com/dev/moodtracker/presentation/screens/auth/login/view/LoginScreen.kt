@@ -32,6 +32,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -39,9 +40,18 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.dev.moodtracker.presentation.screens.auth.login.contract.LoginContract
 import com.dev.moodtracker.presentation.screens.auth.login.contract.LoginViewModel
+import com.dev.moodtracker.presentation.theme.MoodTrackerTheme
 import com.dev.moodtracker.presentation.ui.auth.LoginField
 import com.dev.moodtracker.presentation.ui.auth.PasswordField
 import com.dev.moodtracker.presentation.ui.main.GreenButton
+
+@Preview(showBackground = true)
+@Composable
+private fun LoginScreenPreview() {
+    MoodTrackerTheme {
+        LoginContent(onEvent = {}, navController = null)
+    }
+}
 
 
 @Composable
@@ -67,7 +77,7 @@ fun LoginScreen(navController: NavController, vm: LoginViewModel = hiltViewModel
 @Composable
 private fun LoginContent(
     onEvent: (LoginContract.Event) -> Unit,
-    navController: NavController,
+    navController: NavController?,
 ) {
 
     var loginValue by rememberSaveable(stateSaver = TextFieldValue.Saver) { mutableStateOf(TextFieldValue()) }
@@ -115,7 +125,11 @@ private fun LoginContent(
         ClickableText(
             text = AnnotatedString(text = stringResource(id = R.string.register)),
             style = TextStyle(textDecoration = TextDecoration.Underline, color = Color(0xFF4AA1F1), fontSize = 16.sp),
-            onClick = { navController.navigate("register") }
+            onClick = {
+                navController?.let {
+                    it.navigate("register")
+                }
+            }
         )
     }
 

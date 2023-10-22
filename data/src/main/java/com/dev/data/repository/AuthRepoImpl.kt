@@ -5,7 +5,7 @@ import com.dev.data.network.dto.RegisterDto
 import com.dev.data.network.dto.toUserInfo
 import com.dev.data.storage.tokens.TokenDao
 import com.dev.data.utils.performNetworkOperation
-import com.dev.domain.model.AuthCredentials
+import com.dev.domain.model.auth.AuthCredentials
 import com.dev.domain.repository.AuthRepository
 import com.dev.domain.utils.Response
 import kotlinx.coroutines.flow.MutableStateFlow

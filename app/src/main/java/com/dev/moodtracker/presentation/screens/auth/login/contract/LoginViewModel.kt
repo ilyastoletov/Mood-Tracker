@@ -1,7 +1,7 @@
 package com.dev.moodtracker.presentation.screens.auth.login.contract
 
 import androidx.lifecycle.viewModelScope
-import com.dev.domain.model.AuthCredentials
+import com.dev.domain.model.auth.AuthCredentials
 import com.dev.domain.usecase.auth.CheckLoginUseCase
 import com.dev.domain.usecase.auth.LoginUseCase
 import com.dev.domain.usecase.auth.LogoutUseCase

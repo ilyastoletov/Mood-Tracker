@@ -1,6 +1,6 @@
 package com.dev.domain.repository
 
-import com.dev.domain.model.AuthCredentials
+import com.dev.domain.model.auth.AuthCredentials
 import com.dev.domain.utils.Response
 import kotlinx.coroutines.flow.StateFlow
 
