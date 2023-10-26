@@ -13,12 +13,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -33,6 +33,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -41,11 +42,22 @@ import com.dev.domain.model.mood.Mood
 import com.dev.moodtracker.presentation.screens.auth.login.contract.LoginViewModel
 import com.dev.moodtracker.presentation.theme.Colors
 import com.dev.moodtracker.R
+import com.dev.moodtracker.presentation.screens.main.model.DemoFullMoodModel
+import com.dev.moodtracker.presentation.screens.main.model.FullMoodModel
+import com.dev.moodtracker.presentation.screens.main.model.MoodType
 import com.dev.moodtracker.presentation.ui.main.GreenButton
+import com.dev.moodtracker.presentation.ui.mood.MoodCard
 
 @Composable
 fun MainScreen(navController: NavController, vm: LoginViewModel = hiltViewModel()) {
+    val testMoodList: List<FullMoodModel> = listOf(
+        DemoFullMoodModel,
+        DemoFullMoodModel,
+        DemoFullMoodModel,
+    )
     Scaffold(
+        containerColor = Colors.Background,
+        topBar = { MainScreenHeader() },
         floatingActionButton = {
             FloatingActionButton(
                 containerColor = Colors.ButtonGreen,
@@ -61,10 +73,11 @@ fun MainScreen(navController: NavController, vm: LoginViewModel = hiltViewModel(
     ) {
         Column(modifier = Modifier.padding(it)) {
             LazyColumn(modifier = Modifier
-                .fillMaxSize()
                 .padding(horizontal = 5.dp)
             ) {
-                item { MainScreenHeader() }
+                items(testMoodList) {
+                    MoodCard(model = it)
+                }
             }
         }
     }
@@ -73,7 +86,7 @@ fun MainScreen(navController: NavController, vm: LoginViewModel = hiltViewModel(
 @Composable
 private fun MainScreenHeader() {
     Text(
-        modifier = Modifier.padding(top = 30.dp, start = 10.dp, bottom = 20.dp),
+        modifier = Modifier.padding(top = 20.dp, start = 10.dp, bottom = 20.dp),
         text = stringResource(R.string.my_records),
         style = TextStyle(
             fontSize = 18.sp,
@@ -82,28 +95,4 @@ private fun MainScreenHeader() {
             fontFamily = FontFamily(Font(R.font.inter_700))
         )
     )
-}
-
-@Composable
-private fun MoodCard(model: Mood) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clip(RoundedCornerShape(15.dp))
-            .background(Colors.LightGrey),
-        horizontalArrangement = Arrangement.SpaceBetween
-    ) {
-        Box(modifier = Modifier
-            .fillMaxWidth(0.3f)
-            .fillMaxHeight(), contentAlignment = Alignment.Center
-        ) {
-            Image(
-                modifier = Modifier
-                    .width(100.dp)
-                    .height(100.dp),
-                painter = painterResource(id = model.moodEmojiIconRes),
-                contentDescription = "emoji icon"
-            )
-        }
-    }
 }

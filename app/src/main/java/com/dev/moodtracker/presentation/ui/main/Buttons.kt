@@ -8,7 +8,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.dev.moodtracker.presentation.theme.ButtonGreen
+import com.dev.moodtracker.presentation.theme.Colors.ButtonGreen
+
 
 @Composable
 fun GreenButton(modifier: Modifier, label: String, onClick: () -> Unit) {

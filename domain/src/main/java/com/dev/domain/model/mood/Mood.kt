@@ -1,12 +1,9 @@
 package com.dev.domain.model.mood
 
-import androidx.annotation.DrawableRes
+import com.dev.domain.model.mood.enumeration.MoodTypeEnum
 
 data class Mood(
-    @DrawableRes
-    val moodEmojiIconRes: Int,
-    val moodTitle: String,
-    val shortText: String,
+    val moodType: MoodTypeEnum,
     val fullText: String,
     val creatingDate: String,
 )
