@@ -8,4 +8,5 @@ object Routes {
         const val register = "auth/register"
         const val login = "auth/login"
     }
+
 }

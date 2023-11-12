@@ -24,7 +24,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.dev.moodtracker.R
 import com.dev.moodtracker.presentation.screens.main.model.DemoFullMoodModel
 import com.dev.moodtracker.presentation.screens.main.model.FullMoodModel
 import com.dev.moodtracker.presentation.theme.MoodTrackerTheme
@@ -35,7 +34,8 @@ private fun MoodCardPreview() {
     MoodTrackerTheme {
         Box(modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)) {
+            .padding(16.dp)
+        ) {
             MoodCard(model = DemoFullMoodModel)
         }
     }
@@ -46,25 +46,26 @@ fun MoodCard(model: FullMoodModel) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(15.dp)),
-        horizontalArrangement = Arrangement.SpaceBetween
+            .padding(vertical = 10.dp)
+            .clip(RoundedCornerShape(15.dp))
+            .background(Color(0xFF202020)),
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        Box(modifier = Modifier
-            .fillMaxWidth(0.3f)
-            .background(Color.LightGray),
+        Box(
+            modifier = Modifier.background(Color.LightGray),
             contentAlignment = Alignment.Center
         ) {
             Image(
                 modifier = Modifier
                     .width(100.dp)
-                    .height(100.dp),
+                    .height(100.dp)
+                    .padding(10.dp),
                 painter = painterResource(id = model.fullMoodType.moodIconDrawable),
                 contentDescription = "emoji icon"
             )
         }
-        Column(modifier = Modifier
-            .fillMaxWidth(0.7f)
-            .padding(8.dp),
+        Column(
+            modifier = Modifier.padding(8.dp),
             verticalArrangement = Arrangement.spacedBy(10.dp)
         ) {
             Row(

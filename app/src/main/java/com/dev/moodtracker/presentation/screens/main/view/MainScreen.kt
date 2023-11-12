@@ -1,6 +1,7 @@
 package com.dev.moodtracker.presentation.screens.main.view
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -54,7 +55,11 @@ fun MainScreen(navController: NavController, vm: LoginViewModel = hiltViewModel(
         }
     ) {
         Column(modifier = Modifier.padding(it)) {
-            LazyColumn(modifier = Modifier.padding(horizontal = 5.dp)) {
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(horizontal = 10.dp)
+            ) {
                 items(testMoodList) {
                     MoodCard(model = it)
                 }

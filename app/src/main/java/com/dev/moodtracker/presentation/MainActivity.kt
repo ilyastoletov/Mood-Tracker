@@ -3,12 +3,11 @@ package com.dev.moodtracker.presentation
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
@@ -28,11 +27,11 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             val loginVm: LoginViewModel = hiltViewModel()
-            val isLoggedIn = loginVm.isLoggedIn.collectAsState()
+            val isLoggedIn by loginVm.isLoggedIn.collectAsState()
 
             MoodTrackerTheme {
                 Surface(modifier = Modifier.fillMaxSize(), color = Colors.Background) {
-                    NavigationHost(isLoggedIn.value)
+                    NavigationHost(isLoggedIn)
                 }
             }
         }
